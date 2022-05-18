@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="row row-cols-1 row-cols-md-2 g-4 mt-1">
+		<div class="col">
+			<div class="card h-100">
+				<div class="card-header">
+					<center class="">
+					<a href="{% url 'csv-form' %}" class="btn btn-primary">Upload File</a>
+					</center>
+				</div>
+				<div class="card-body">
+					<center class="mb-2">
+					<h5 class="card-title">Details</h5>
+					</center>
+					<p>File: <b class="text-primary">{{csv}}</b></p>
+					<p>Support: <b class="text-primary">{{min_support}}</b></p>
+					<p>Total items: <b class="text-primary">{{ all_items }}</b></p>
+					<p>Run-time:<b class="text-primary">{{  program_run_time }} hrs:mins:sec.ms</b></p>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card h-100">
+				<div class="card-header">Results</div>
+				<div class="card-body">
+					<table class="table table-sm">
+						<thead>
+							<tr>
+								<th scope="col">Item</th>
+								<th scope="col">Count</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for records in items %}
+								<tr>
+									<td>{{ records.0 }}</td>
+									<td>{{ records.1 }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
